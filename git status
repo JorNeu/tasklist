@@ -1,0 +1,36 @@
+[33mcommit 780eb4992320a3e3b94e1d6b3b19a4f69b37b913[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: c961ade 1607152
+Author: JorNeu <jorgeeneuendorf@gmail.com>
+Date:   Wed Feb 28 02:23:35 2024 -0300
+
+    agregando todos los cambios front e intento de crear task desde el front
+
+[33mcommit c961ade619debc4711de72b773f448dc75afbc4c[m
+Author: JorNeu <jorgeeneuendorf@gmail.com>
+Date:   Wed Feb 28 02:20:26 2024 -0300
+
+    no se que contiene das
+
+[33mcommit 160715280947750644758aad96604e5e703177a9[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: JorNeu <jorgeeneuendorf@gmail.com>
+Date:   Wed Feb 28 01:55:54 2024 -0300
+
+    add front (css,html, js) and frontend post test
+
+[33mcommit 103511d02e3862654bb2bb2c305f7f90620b5edf[m
+Author: JorNeu <jorgeeneuendorf@gmail.com>
+Date:   Tue Feb 20 13:27:01 2024 -0300
+
+    Signed-off-by: JorNeu <jorgeeneuendorf@gmail.com>
+
+[33mcommit 81ef300feaa301931007c6c6a2f5c8d856b9a9c5[m
+Author: Jor Neu <136647300+JorNeu@users.noreply.github.com>
+Date:   Sat Feb 17 11:42:22 2024 -0300
+
+    first rest
+
+[33mcommit 3108a408bb0f2c45d10e13fa05cf1dff4fb5555e[m
+Author: Jor Neu <136647300+JorNeu@users.noreply.github.com>
+Date:   Wed Feb 14 00:58:27 2024 -0300
+
+    Initial commit
