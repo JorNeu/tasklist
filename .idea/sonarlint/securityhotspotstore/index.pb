@@ -9,3 +9,11 @@ z
 Jtasklist.api/src/main/java/com/tasklist/api/controller/TaskController.java,6\9\698cf11dd25866bb5c206fbb5a11c0d865bface9
 f
 6tasklist.api/src/main/resources/application.properties,7\5\75fe33d11dbc1d088990f067478cb46e2773b2a8
+v
+Ftasklist.api/src/main/java/com/tasklist/api/services/ITaskService.java,3\6\369ca37c34ef3b08b21ef837ebf7a993cfafb4c8
+{
+Ktasklist.api/src/main/java/com/tasklist/api/persistence/TaskRepository.java,6\0\60b173f5bfb7d40160829b727ce6cb3a08544955
+~
+Ntasklist.api/src/main/java/com/tasklist/api/services/TaskServiceImplement.java,9\d\9d78a740d01b1f71e17a238d691f451a8f935faf
+r
+Btasklist.api/src/main/java/com/tasklist/api/config/corsConfig.java,2\1\211e2075c784ee895f0db5730e4ebd493c8d522e

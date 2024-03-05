@@ -1,6 +1,7 @@
 com\tasklist\api\entities\Task.class
+com\tasklist\api\controller\TaskController.class
+com\tasklist\api\config\corsConfig.class
 com\tasklist\api\persistence\TaskRepository.class
 com\tasklist\api\entities\Task$TaskBuilder.class
 com\tasklist\api\services\TaskServiceImplement.class
-com\tasklist\api\controller\TaskController.class
 com\tasklist\api\services\ITaskService.class

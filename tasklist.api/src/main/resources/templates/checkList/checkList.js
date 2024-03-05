@@ -1,17 +1,27 @@
-/*declaracion de clase tarea*/
-class Task {
-    constructor(task,id){
-        this.task = task;
-        this.id = id;
-        this.pos = id;
-    };
-    set setPos(newPos){this.pos=newPos;}
-    get getPos(){return this.pos;}
-    get getId(){return this.id;}
-    get getTask(){return this.task;};
-};
-  //agregar tarea a la base de datos
-  let registrartask = async () => {
+let listartask = async () => {
+    const peticion = await fetch("http://localhost:8080/api/task", {
+        method: "GET",
+        headers: {
+            "accept": "application/json",
+            "content-type": "application/json"
+        }
+    });
+
+    const taskss = await peticion.json();
+
+    for (let i = taskss.length - 1; i >= 0; i--) {
+        let t = taskss[i].text;
+        insertTask(t, taskss[i].id);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Tu código aquí
+    listartask(); // Llamar a listartask después de que el DOM esté completamente cargado
+});
+
+// Agregar tarea a la base de datos
+let registrartask = async () => {
     let campos = {};
     campos.text = formInput.value;
     try {
@@ -35,51 +45,49 @@ class Task {
         console.error('Hubo un problema con la solicitud fetch:', error.message);
     }
 }
-//agregar tarea y verificar que no sea espacio
+
+// Agregar tarea y verificar que no sea espacio
 const formInput = document.querySelector(".inputTask");
 const formButton = document.querySelector(".add");
-let id=0;
-let checkbox=9999;
-formButton.addEventListener("click",(e)=>{
+let id = 0; // Contador para el ID del elemento LI
+let checkbox = 9999; // Contador para el valor del checkbox
+formButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const text = (formInput.value);
+    const text = formInput.value;
     console.log(text);
-    if ((text == "Escribe una nueva tarea")||(text=="")){
-        alert("rellena bien el formulario");
-    }else {
+    if (text == "Escribe una nueva tarea" || text == "") {
+        alert("Rellena bien el formulario");
+    } else {
         registrartask();
-        insertTask(text, id, checkbox);
+        insertTask(text, id);
         id++;
-        checkbox--;  
-    };
+        checkbox--;
+    }
 });
 
-//crear y inicializar tarea
-let tasks=[];
-function insertTask(task,id,checkbox) {
-    const tarea = new Task(task,id);
-    tasks[id]=tarea;
+// Crear y inicializar tarea
+function insertTask(task, id) {
     const ul = document.querySelector(".taskList");
-    //creo el li con su hidden clases etc.
+    // Crear el LI con sus clases, etc.
     const li = document.createElement("LI");
-    li.addEventListener("click",()=>{posHidden(id)});
+    li.addEventListener("click", () => { posHidden(id) });
     li.classList.add("task");
-    li.id=id;
-    li.tabIndex=id;
-    //creo qel div con las clases
+    li.id = id;
+    li.tabIndex = id;
+    // Crear el div con las clases
     const div = document.createElement('div');
     div.classList.add('checklist');
-    //creo el checkbox
+    // Crear el checkbox
     const input = document.createElement('input');
-    input.setAttribute('value', (checkbox));
+    input.setAttribute('value', checkbox); // Asignar el valor del checkbox
     input.setAttribute('name', 'r');
     input.setAttribute('type', 'checkbox');
-    input.setAttribute('id', (checkbox));
-    //creo el label con el mismo value que el checkbox
+    input.setAttribute('id', 'checkbox_' + id); // Asignar un ID único al checkbox
+    // Crear el label con el mismo valor que el checkbox
     const label = document.createElement('label');
-    label.setAttribute('for', (checkbox));
+    label.setAttribute('for', 'checkbox_' + id); // Asignar el ID del checkbox
     let texto = document.createTextNode(task);
-    
+
     label.appendChild(texto);
     div.appendChild(input);
     div.appendChild(label);
@@ -87,22 +95,35 @@ function insertTask(task,id,checkbox) {
     li.appendChild(div);
     ul.appendChild(li);
 }
-//mostrar id de cada tarea al darle click
-const posHidden= (num)=>{
-    document.querySelector(".posData").value = num;
- }
-//crear boton de borrar
-const deleteButton = document.querySelector(".del")
-//evento del boton borrar y verificar que haya una seleccionado
-deleteButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  const pos = document.querySelector(".posData").value;
-  if (pos === "") {
-    alert("Primero seleccione la tarea a eliminar");
-  } else {
-    const parentNode = document.querySelector(".taskList");
-    const childNode = document.getElementById(pos);
-    parentNode.removeChild(childNode);
-  }
-});
 
+// Mostrar ID de cada tarea al darle click
+const posHidden = (num) => {
+    document.querySelector(".posData").value = num;
+}
+
+// Crear botón de borrar
+const deleteButton = document.querySelector(".del");
+// Evento del botón borrar y verificar que haya una tarea seleccionada
+deleteButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const pos = document.querySelector(".posData").value;
+    if (pos === "") {
+        alert("Primero seleccione la tarea a eliminar");
+    } else {
+        const parentNode = document.querySelector(".taskList");
+        const childNode = document.getElementById(pos);
+        parentNode.removeChild(childNode);
+        borrartask(pos);
+    }
+});
+// Agregar tarea a la base de datos
+let borrartask = async (id) => {
+        const peticion = await fetch("http://localhost:8080/api/task/"+id, {
+            method: 'DELETE',
+            headers: {
+                'accept': 'application/json',
+                'content-type': 'application/json'
+            },
+        });
+
+}
